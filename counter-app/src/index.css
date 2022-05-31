@@ -1,0 +1,11 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#root{
+  margin: 1em;
+}
+.div{
+  margin-bottom: 10px;
+}
