@@ -1,9 +1,12 @@
 import MovieList from "./MovieList";
+import NavBar from "./NavBar";
+import { MovieProvider } from "./MovieContext";
 function App() {
   return (
-    <div>
+    <MovieProvider>
+      <NavBar />
       <MovieList />
-    </div>
+    </MovieProvider>
   );
 }
 

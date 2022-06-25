@@ -1,6 +1,6 @@
 import React from "react";
 
-function Movie({ name, price    }) {
+function Movie({ name, price }) {
   return (
     <>
       <h3>{name}</h3>
