@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 const App = () => {
   const [darkMode, setDarkMode] = useState("light");
+  const [darkBtn, setDarkBtn] = useState(true);
   if (localStorage.getItem("theme") == null) {
     localStorage.setItem("theme", darkMode);
   }
@@ -23,30 +24,35 @@ const App = () => {
           </p>
         </div>
         <div className="h-[20%] w-full flex flex-row divide-x-4">
-          <button
-            className="w-[50%] flex items-center justify-center text-lg font-bold dark:text-white"
-            onClick={() => {
-              localStorage.getItem("theme") === "light"
-                ? ""
-                : document.documentElement.classList.remove("dark");
-              localStorage.setItem("theme", "light");
-              setDarkMode("light");
-            }}
-          >
-            Light Mode
-          </button>
-          <button
-            className="w-[50%] flex items-center justify-center text-lg font-bold dark:text-white"
-            onClick={() => {
-              localStorage.getItem("theme") === "dark"
-                ? ""
-                : document.documentElement.classList.remove("light");
-              localStorage.setItem("theme", "dark");
-              setDarkMode("dark");
-            }}
-          >
-            Dark Mode
-          </button>
+          {darkBtn ? (
+            <button
+              className="w-full bg-white flex items-center justify-center text-lg font-bold dark:text-black"
+              onClick={() => {
+                localStorage.getItem("theme") === "light"
+                  ? ""
+                  : document.documentElement.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+                setDarkMode("light");
+                setDarkBtn((v) => !v);
+              }}
+            >
+              Light Mode
+            </button>
+          ) : (
+            <button
+              className="w-full flex items-center justify-center text-lg font-bold bg-black text-white"
+              onClick={() => {
+                localStorage.getItem("theme") === "dark"
+                  ? ""
+                  : document.documentElement.classList.remove("light");
+                localStorage.setItem("theme", "dark");
+                setDarkMode("dark");
+                setDarkBtn((v) => !v);
+              }}
+            >
+              Dark Mode
+            </button>
+          )}
         </div>
       </div>
     </div>
