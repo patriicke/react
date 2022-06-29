@@ -1,23 +1,55 @@
-import { useState } from "react";
-
+import * as React from "react";
+import { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 const App = () => {
+  const [darkMode, setDarkMode] = useState("light");
+  if (localStorage.getItem("theme") == null) {
+    localStorage.setItem("theme", darkMode);
+  }
+  useEffect(() => {
+    document.documentElement.classList.add(localStorage.getItem("theme"));
+  }, [darkMode]);
+
   return (
-    <>
-      <div className="flex items-center h-[100vh] justify-center  flex-col gap-2">
-        <div className="group w-[40rem] bg-slate-400 h-[30em] flex flex-col p-2 space-y-8">
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-100 duration-700">1</div>
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-300 duration-700">2</div>
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-500 duration-700">3</div>
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-1000 duration-700">4</div>
+    <div className=" h-[100vh] w-[100] bg-red-white flex items-center justify-center dark:bg-gray-900 ">
+      <div className="  w-[30em] h-[17em] bg-white shadow-2xl flex flex-col divide-y-4 dark:bg-gray-500 ">
+        <div className="h-[80%] w-full p-10">
+          <h1 className="text-[2em] font-bold dark:text-white">
+            Dark mode is here
+          </h1>
+          <p className="text-[1.3em] dark:text-white">
+            Support for dark mode is now available with two strategies: media
+            query and parent class
+          </p>
         </div>
-        <div className="group w-[40rem] bg-slate-400 h-[30em] flex flex-col p-2 space-y-8">
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-100 duration-700">4</div>
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-300 duration-700">6</div>
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-500 duration-700">7</div>
-          <div className="w-[10em] h-[20em] bg-white group-hover:translate-x-[29em] transition ease-in-out delay-1000 duration-700">4</div>
+        <div className="h-[20%] w-full flex flex-row divide-x-4">
+          <button
+            className="w-[50%] flex items-center justify-center text-lg font-bold dark:text-white"
+            onClick={() => {
+              localStorage.getItem("theme") === "light"
+                ? ""
+                : document.documentElement.classList.remove("dark");
+              localStorage.setItem("theme", "light");
+              setDarkMode("light");
+            }}
+          >
+            Light Mode
+          </button>
+          <button
+            className="w-[50%] flex items-center justify-center text-lg font-bold dark:text-white"
+            onClick={() => {
+              localStorage.getItem("theme") === "dark"
+                ? ""
+                : document.documentElement.classList.remove("light");
+              localStorage.setItem("theme", "dark");
+              setDarkMode("dark");
+            }}
+          >
+            Dark Mode
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default App;
