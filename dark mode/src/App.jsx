@@ -12,7 +12,7 @@ const App = () => {
   }, [darkMode]);
 
   return (
-    <div className=" h-[100vh] w-[100] bg-red-white flex items-center justify-center dark:bg-gray-900 ">
+    <div className=" h-[100vh] w-[100] flex items-center justify-center dark:bg-gray-900 ">
       <div className="  w-[30em] h-[17em] bg-white shadow-2xl flex flex-col divide-y-4 dark:bg-gray-500 ">
         <div className="h-[80%] w-full p-10">
           <h1 className="text-[2em] font-bold dark:text-white">
@@ -26,7 +26,7 @@ const App = () => {
         <div className="h-[20%] w-full flex flex-row divide-x-4">
           {darkBtn ? (
             <button
-              className="w-full bg-white flex items-center justify-center text-lg font-bold dark:text-black"
+              className="w-full bg-black text-white flex items-center justify-center text-lg font-bold dark:bg-white dark:text-black"
               onClick={() => {
                 localStorage.getItem("theme") === "light"
                   ? ""
@@ -50,7 +50,7 @@ const App = () => {
                 setDarkBtn((v) => !v);
               }}
             >
-              Dark Mode
+                Dark Mode
             </button>
           )}
         </div>
